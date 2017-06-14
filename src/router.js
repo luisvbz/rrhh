@@ -26,8 +26,21 @@ export default new VueRouter({
       component: load('App'),
       children: [
         {
+          path: '/',
+          component: load('Index')
+        },
+        {
           path: '/constancia',
-          component: load('Constancia') }
+          component: load('Constancia')
+        },
+        {
+          path: '/perfil',
+          component: load('Perfil')
+        },
+        {
+          path: '/recibos/:anio',
+          component: load('Sp')
+        }
       ] },
     { path: '*', component: load('Error404') } // Not found
   ]

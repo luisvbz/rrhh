@@ -17,4 +17,3 @@ $ quasar build
 # lint code
 $ quasar lint
 ```
-# rrhh

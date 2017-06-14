@@ -44,15 +44,15 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      error: false,
+      msj: null
     }
   },
   methods: {
     signin (event) {
-      this.entrando = true
       event.preventDefault()
       auth.signin(this, this.username, this.password)
-      this.entrando = false
     }
   }
 }

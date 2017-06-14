@@ -5,11 +5,8 @@
         <i>menu</i>
       </button>
       <q-toolbar-title :padding="1">
-        {{ auth.user.profile.first_name }}, {{ auth.user.profile.last_name }}
+        RRHH {{ modulo }}
       </q-toolbar-title>
-      <button @click="$refs.rightDrawer.open()">
-        <i>assignment</i>
-      </button>
     </div>
 
     <q-drawer ref="leftDrawer">
@@ -20,7 +17,10 @@
       </div>
 
       <div class="list no-border platform-delimiter">
-        <q-drawer-link icon="person" to="/showcase/layout" exact>
+        <q-drawer-link icon="home" to="/" exact>
+          Inicio
+        </q-drawer-link>
+        <q-drawer-link icon="person" to="/perfil" exact>
           Perfil
         </q-drawer-link>
         <hr>
@@ -28,13 +28,10 @@
         <q-drawer-link icon="description" to="/constancia">
           Constancia
         </q-drawer-link>
-        <q-drawer-link icon="account_balance_wallet" to="/showcase/layout/tabs">
-          ARC 2016
-        </q-drawer-link>
-        <q-drawer-link icon="attach_money" to="/showcase/layout/drawer">
+        <q-drawer-link icon="attach_money" to="/recibos/2017">
           Recibos 2017
         </q-drawer-link>
-        <q-drawer-link icon="attach_money" to="/showcase/layout/drawer">
+        <q-drawer-link icon="attach_money" to="/recibos/2016">
           Recibos 2016
         </q-drawer-link>
         <div class="item item-link drawer-closer">
@@ -47,20 +44,7 @@
 
     <router-view class="layout-view"></router-view>
 
-    <q-drawer right-side swipe-only ref="rightDrawer">
-      <div class="toolbar light">
-        <q-toolbar-title :padding="1">
-            Right-side Drawer
-        </q-toolbar-title>
-      </div>
-
-      <p style="padding: 25px;" class="text-grey-7">
-        This is yet another Drawer that does not gets displayed alongside content on
-        bigger screens.
-      </p>
-    </q-drawer>
-
-    <div slot="footer" class="toolbar">
+    <!--<div slot="footer" class="toolbar">
       <div class="auto flex justify-center within-iframe-hide">
         <button v-go-back="'/showcase'">
           <i class="on-left animate-blink">
@@ -72,7 +56,7 @@
       <q-toolbar-title :padding="0" class="within-iframe-only">
         Footer
       </q-toolbar-title>
-    </div>
+    </div> -->
   </q-layout>
 </template>
 
@@ -84,7 +68,8 @@ export default {
   data () {
     return {
       search: '',
-      auth: auth
+      auth: auth,
+      modulo: ''
     }
   },
   mounted () {

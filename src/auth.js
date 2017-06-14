@@ -8,7 +8,7 @@ export default {
   },
   check () {
     if (localStorage.getItem('jwt-token') !== null) {
-      Vue.http.get(
+      Vue.axios.get(
           'api/user'
       ).then(response => {
         this.user.authenticated = true
@@ -20,7 +20,7 @@ export default {
     }
   },
   register (context, name, username, password) {
-    Vue.http.post(
+    Vue.axios.post(
         'api/register',
       {
         name: name,
@@ -30,14 +30,12 @@ export default {
     ).then(response => {
       context.success = true
     }, response => {
-      console.log(response)
       context.response = response.data
       context.error = true
-        
     })
   },
   signin (context, username, password) {
-    Vue.http.post(
+    Vue.axios.post(
         'api/login',
       {
         username: username,
@@ -46,7 +44,7 @@ export default {
     ).then(response => {
       context.error = false
       localStorage.setItem('jwt-token', response.data.meta.token)
-      Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt-token')
+      Vue.axios.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt-token')
 
       this.user.authenticated = true
       this.user.profile = response.data.data
@@ -55,9 +53,13 @@ export default {
       router.push({
         path: '/'
       })
+      Loading.hide()
     }, response => {
       context.error = true
       context.msj = response.data.error
+      Toast.create.negative({
+          html: context.msj
+        })
     })
   },
   signout () {

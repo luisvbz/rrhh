@@ -7,7 +7,7 @@
     </div>
     <div class="layout-view">
     	 <div class="card">
-		  <img src="~assets/logorrhh.png">
+		  <img src="~assets/logorrhh.png" class="logo">
 		  <div class="card-content">
 		    <center>Ingrese sus datos</center>
 		 </div>
@@ -28,7 +28,9 @@
     		</div>
   		</div>
   		<div class="group">
-	        <button type="submit" class="primary full-width">Entrar</button>
+	        <button type="submit" class="primary push btnlogin" v-if="!loading">Entrar</button>
+          <button class="primary push btnlogin" v-else disabled><spinner name="facebook" :size="28" color="#fff"></spinner></button>
+          
 		</div>
     </form>
     </div>
@@ -46,7 +48,8 @@ export default {
       username: '',
       password: '',
       error: false,
-      msj: null
+      msj: null,
+      loading: false
     }
   },
   methods: {
@@ -57,3 +60,14 @@ export default {
   }
 }
 </script>
+<style>
+.logo{
+  width: 10%;
+}
+
+.btnlogin{
+  width: 60%;
+  padding: 1em 3em;
+  margin: 1em 20%;
+}
+</style>

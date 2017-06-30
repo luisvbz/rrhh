@@ -38,8 +38,12 @@ export default new VueRouter({
           component: load('Perfil')
         },
         {
-          path: '/recibos/:anio',
-          component: load('Sp')
+          path: '/recibos/2017',
+          component: load('Sp2017')
+        },
+        {
+          path: '/recibos/2016',
+          component: load('Sp2016')
         }
       ] },
     { path: '*', component: load('Error404') } // Not found

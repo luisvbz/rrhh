@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
 dist/
+cordova/
+electron/
 npm-debug.log
 npm-debug.log.*
 selenium-debug.log

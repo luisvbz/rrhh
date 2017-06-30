@@ -1,6 +1,8 @@
 /* eslint-disable */
 import Vue from 'vue'
 import router from './router'
+import { Loading } from 'quasar'
+import { Toast } from 'quasar'
 export default {
   user: {
     authenticated: false,
@@ -8,7 +10,7 @@ export default {
   },
   check () {
     if (localStorage.getItem('jwt-token') !== null) {
-      Vue.axios.get(
+      Vue.http.get(
           'api/user'
       ).then(response => {
         this.user.authenticated = true
@@ -20,7 +22,7 @@ export default {
     }
   },
   register (context, name, username, password) {
-    Vue.axios.post(
+    Vue.http.post(
         'api/register',
       {
         name: name,
@@ -35,7 +37,8 @@ export default {
     })
   },
   signin (context, username, password) {
-    Vue.axios.post(
+    context.loading = true
+    Vue.http.post(
         'api/login',
       {
         username: username,
@@ -44,11 +47,11 @@ export default {
     ).then(response => {
       context.error = false
       localStorage.setItem('jwt-token', response.data.meta.token)
-      Vue.axios.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt-token')
+      Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt-token')
 
       this.user.authenticated = true
       this.user.profile = response.data.data
-
+      context.loading = false
       this.check()
       router.push({
         path: '/'
@@ -60,6 +63,7 @@ export default {
       Toast.create.negative({
           html: context.msj
         })
+      context.loading = false
     })
   },
   signout () {

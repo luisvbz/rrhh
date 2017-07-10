@@ -120,6 +120,9 @@ export default {
       total_eg: 0.00
     }
   },
+  beforeCreate () {
+    document.body.className = 'all'
+  },
   mounted () {
     auth.check()
     this.showNominas = true

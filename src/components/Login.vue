@@ -1,42 +1,34 @@
 <template>
-  <q-layout>
-    <div slot="header" class="toolbar">
-      <q-toolbar-title :padding="1">
-        <center>INICIO DE SESIÓN</center>
-      </q-toolbar-title>
+  <!-- root node required -->
+  <div class="body">
+    <div class="row">
+      <div class="name">
+          <h4>RRHH Unermb</h4>
+      </div>
     </div>
-    <div class="layout-view">
-    	 <div class="card">
-		  <img src="~assets/logorrhh.png" class="logo">
-		  <div class="card-content">
-		    <center>Ingrese sus datos</center>
-		 </div>
-		</div>
-    <form v-on:submit="signin">
-	  	<div class="list">
-  			<div class="item two-lines">
-    			<i class="item-primary">person</i>
-	    		<div class="item-content">
-	     	 		<input class="full-width" placeholder="Cedula" v-model="username">
-	     		</div>
-    		</div>
-    		<div class="item two-lines">
-    			<i class="item-primary">lock</i>
-	    		<div class="item-content">
-	     	 		<input type="password" class="full-width" placeholder="Contraseña" v-model="password">
-	     		</div>
-    		</div>
-  		</div>
-  		<div class="group">
-	        <button type="submit" class="primary push btnlogin" v-if="!loading">Entrar</button>
-          <button class="primary push btnlogin" v-else disabled><spinner name="facebook" :size="28" color="#fff"></spinner></button>
-          
-		</div>
-    </form>
+    <div class="row">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="~assets/logo.png">
+        </div>
+      </div>
     </div>
-</div>
-</div>
-  </q-layout>
+    <div class="row">
+      <div class="buttons-container">
+        <form v-on:submit="signin">
+          <input class="input" type="text" placeholder="Cedula" v-model="username">
+          <input type="password" placeholder="Contraseña" v-model="password">
+        <button type="submit" class="deep-orange push full-width"  v-if="!loading">
+            ENTRAR
+        </button>
+        <button v-else class="deep-orange push full-width">
+            <spinner name="tail" :size="20" color="#fff"></spinner>
+        </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -52,6 +44,9 @@ export default {
       loading: false
     }
   },
+  beforeCreate () {
+    document.body.className = 'login'
+  },
   methods: {
     signin (event) {
       event.preventDefault()
@@ -60,14 +55,53 @@ export default {
   }
 }
 </script>
-<style>
-.logo{
-  width: 10%;
-}
 
-.btnlogin{
-  width: 60%;
-  padding: 1em 3em;
-  margin: 1em 20%;
-}
+
+<style lang="stylus">
+
+body
+  font-family: 'Roboto', sans-serif
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+    
+  webkit-justify-content: center
+  ms-flex-pack: center
+  justify-content: center
+    
+  webkit-align-items: center
+  ms-flex-align: center
+  align-items: center
+
+.name
+  width: 100%
+  text-align: center
+  color: white
+
+
+.logo-container
+  width: 100%
+  text-align: center
+  padding-top: 15px
+  padding-bottom: 15px
+
+.buttons-container
+  padding-top: 15px
+  width: 80%
+  margin: 0 auto
+
+img
+  width: 40%
+  height: 40%
+  margin: 0 auto
+
+input:not(.no-style)
+  background-color: #FFFFFF
+  max-width: 100%
+  font-size: 0,9rem
+  padding: 8px
+  width: 100%
+  margin-bottom: 10px
+
+
 </style>

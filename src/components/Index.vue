@@ -41,3 +41,16 @@
 
 <style>
 </style>
+<script>
+  export default {
+    data () {
+      return {
+
+      }
+    },
+    beforeCreate () {
+      document.body.className = 'all'
+    }
+  }
+
+</script>

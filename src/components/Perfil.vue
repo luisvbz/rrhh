@@ -52,6 +52,9 @@ export default {
       email: auth.user.profile.email
     }
   },
+  beforeCreate () {
+    document.body.className = 'all'
+  },
   mounted () {
     auth.check()
   },

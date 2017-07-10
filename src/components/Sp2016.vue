@@ -120,6 +120,9 @@ export default {
       total_eg: 0.00
     }
   },
+  beforeCreate () {
+    document.body.className = 'all'
+  },
   mounted () {
     auth.check()
     this.showNominas = true
@@ -139,7 +142,7 @@ export default {
       Loading.show({
         message: 'Cargando recibos de pago disponibles'
       })
-      this.$http.get('api/sobrepagos/' + cedper + '/2017').then(response => {
+      this.$http.get('api/sobrepagos/' + cedper + '/2016').then(response => {
         for (var i = 0; i < response.body.length; i++) {
           this.nominas.push(response.body[i])
         }

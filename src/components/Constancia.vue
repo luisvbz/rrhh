@@ -169,6 +169,9 @@ export default {
       }
     }
   },
+  beforeCreate () {
+    document.body.className = 'all'
+  },
   mounted () {
     auth.check()
     this.codper = this.auth.user.profile.username

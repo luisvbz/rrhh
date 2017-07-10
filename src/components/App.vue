@@ -37,7 +37,7 @@
         <div class="item item-link drawer-closer">
         <i class="item-primary">keyboard_arrow_lefts</i>
         <div class="item-content"  @click="auth.signout()">
-        Salir
+        Cerrar sesión
       </div></div>
       </div>
     </q-drawer>
